@@ -1,11 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState} from "react";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar(props) {
-  console.log(props.status);
+  console.log(props);
+  const [loggedIn, setLoggedIn] = useState(props.loggedIn);
+  const location = useLocation();
 
-  function handelClick(e) {
-    props.status = !props.status;
+  function handleClick(e) {
+    if (loggedIn) {
+      e.preventDefault()
+      setLoggedIn(false);
+      props.login();
+      location('/')
+    } else {
+      setLoggedIn(true);
+      props.login();
+    }
   }
 
   return (
@@ -35,11 +45,11 @@ function Navbar(props) {
             </div>
           ) : null}
           {props.status ? (
-            <Link to="/" onClick={handelClick} id="logout">
+            <Link to="/" onClick={handleClick} id="logout">
               Logout
             </Link>
           ) : (
-            <Link to="/" onClick={handelClick} id="logout"></Link>
+            <Link to="/" onClick={handleClick} id="logout"></Link>
           )}
         </nav>
       </header>

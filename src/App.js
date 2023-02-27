@@ -64,14 +64,14 @@ class App extends Component {
         <Router>
           <Navbar login={this.loginHandler} status={this.state.isLogin} />
           <Routes>
-            <Route path="/" element={<LoginPage login={this.loginHandler} />} />
+            {/* <Route path="/" element={<LoginPage login={this.loginHandler} />} /> */}
+            <Route
+              path="/"
+              element={<LoginPage login={this.loginHandler} />}
+            />
             <Route path="/orders" element={<Orders />} />
             <Route path="/products" element={<Products />} />
             <Route path="/users" element={<Users />} />
-            <Route
-              path="/login"
-              element={<LoginPage login={this.loginHandler} />}
-            />
           </Routes>
         </Router>
       </>
