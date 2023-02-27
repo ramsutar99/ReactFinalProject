@@ -113,7 +113,8 @@ class Users extends Component {
 
   handleSearchInputChange = (e) => {
     e.preventDefault();
-    this.setState({ searchValue: e.target.value });
+    let value = e.target.value.toLowerCase()
+    this.setState({ searchValue: value});
   };
 
   handleResetClick = () => {
