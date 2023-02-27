@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 function Navbar(props) {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    // e.preventDefault();
     props.logout();
     navigate('/login');
   }
