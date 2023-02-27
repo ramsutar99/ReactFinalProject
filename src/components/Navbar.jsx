@@ -1,13 +1,11 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar(props) {
-  const navigate = useNavigate();
+  console.log(props.status);
 
-  const handleLogout = (e) => {
-    // e.preventDefault();
-    props.logout();
-    navigate('/login');
+  function handelClick(e) {
+    props.status = !props.status;
   }
 
   return (
@@ -15,30 +13,41 @@ function Navbar(props) {
       <header>
         <nav>
           <div className="logo">
-            <img src="https://edu-web-fundamentals.web.app/static/media/logo.58169365.png" alt="" />
+            <img
+              src="https://edu-web-fundamentals.web.app/static/media/logo.58169365.png"
+              alt=""
+            />
             <span>Kafene</span>
           </div>
           {props.status ? (
             <div className="header-list">
               <ul>
-                <li id="orders-link" className="head-links"><Link to="/orders"> Orders</Link></li>
-                <li id="products-link" className="head-links"><Link to="/products" >Products</Link></li>
-                <li id="users-link" className="head-links" ><Link to="/users" > Users</Link></li>
+                <li id="orders-link" className="head-links">
+                  <Link to="/orders"> Orders</Link>
+                </li>
+                <li id="products-link" className="head-links">
+                  <Link to="/products">Products</Link>
+                </li>
+                <li id="users-link" className="head-links">
+                  <Link to="/users"> Users</Link>
+                </li>
               </ul>
             </div>
           ) : null}
-          {props.status ?
-            <Link to="/login" id="logout" onClick={handleLogout}>Logout</Link>
-            :
-            <Link to="/login" id="login"></Link>
-          }
+          {props.status ? (
+            <Link to="/" onClick={handelClick} id="logout">
+              Logout
+            </Link>
+          ) : (
+            <Link to="/" onClick={handelClick} id="logout"></Link>
+          )}
         </nav>
       </header>
     </>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
 
 // class component===============================================================================
 
